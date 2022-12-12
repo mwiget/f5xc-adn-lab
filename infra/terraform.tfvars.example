@@ -1,0 +1,4 @@
+project_prefix  = "prefix"
+owner_tag       = "<owner id>"
+aws_access_key  = "<aws access key>"
+aws_secret_key  = "<aws secret key>"

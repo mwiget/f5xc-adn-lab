@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consul
+  template:
+    metadata:
+      labels:
+        app: consul
+    spec:
+      containers:
+      - image: consul
+        imagePullPolicy: IfNotPresent
+        name: consul
+        env:
+        - name: CONSUL_BIND_INTERFACE
+          value: eth0
+        - name: CONSUL_LOCAL_CONFIG
+          value: '{"datacenter": "mwadn-dev"}'
+        ports:
+        - containerPort: 8500
+          protocol: TCP
+        - containerPort: 8400
+          protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: consul-http
+spec:
+  ports:
+    - protocol: TCP
+      port: 8500
+      targetPort: 8500
+  selector:
+    app: consul
+  type: ClusterIP
+  sessionAffinity: None
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: consul-rpc
+spec:
+  ports:
+    - protocol: TCP
+      port: 8400
+      targetPort: 8400
+  selector:
+    app: consul
+  type: ClusterIP
+  sessionAffinity: None
+

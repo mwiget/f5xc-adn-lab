@@ -1,0 +1,3 @@
+[submodule "virtual/modules"]
+	path = virtual/modules
+	url = https://github.com/cklewar/f5-xc-modules.git
