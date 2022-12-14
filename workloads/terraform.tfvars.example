@@ -1,0 +1,5 @@
+project_prefix  = "prefix"
+owner_tag       = "<owner email address>
+aws_access_key  = "<aws_access_key>"
+aws_secret_key  = "<aws_secret_key>"
+ssh_public_key  = "ssh-ed25519 ....."

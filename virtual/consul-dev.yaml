@@ -24,8 +24,6 @@ spec:
         ports:
         - containerPort: 8500
           protocol: TCP
-        - containerPort: 8400
-          protocol: TCP
 ---
 kind: Service
 apiVersion: v1
@@ -40,18 +38,3 @@ spec:
     app: consul
   type: ClusterIP
   sessionAffinity: None
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: consul-rpc
-spec:
-  ports:
-    - protocol: TCP
-      port: 8400
-      targetPort: 8400
-  selector:
-    app: consul
-  type: ClusterIP
-  sessionAffinity: None
-

@@ -16,6 +16,7 @@ resource "aws_subnet" "subnet" {
   tags                    = {
     Name    = format("%s-%s", var.vpc_name, each.value.availability_zone)
     Creator = var.owner_tag
+    security_group_id = resource.aws_security_group.allow_traffic.id
   }
   lifecycle {
     ignore_changes = [tags]
@@ -31,8 +32,9 @@ resource "aws_internet_gateway" "gateway" {
   }
 }
 
-resource "aws_route_table" "route_table" {
-  vpc_id = aws_vpc.vpc.id
+resource "aws_route_table" "rt" {
+  for_each    = {for k, v in var.vpc_subnets :  k => v}
+  vpc_id      = aws_vpc.vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -40,15 +42,28 @@ resource "aws_route_table" "route_table" {
   }
 
   tags = {
-    Name = var.vpc_name
+    Name = format("%s-%s", var.vpc_name, each.value.availability_zone)
     Creator = var.owner_tag
   } 
+} 
+
+resource "aws_route_table_association" "rta" {
+  for_each                = {for k, v in var.vpc_subnets :  k => v}
+  subnet_id      = aws_subnet.subnet[each.key].id
+  route_table_id = aws_route_table.rt[each.key].id
 } 
 
 resource "aws_security_group" "allow_traffic" {
   name        = "${var.vpc_name}-allow-traffic"
   description = "allow ssh and smg traffic"
   vpc_id      = aws_vpc.vpc.id
+
+  ingress {
+    from_port   = "0"
+    to_port     = "0"
+    protocol    = "-1"
+    cidr_blocks = ["172.16.0.0/16"]
+  }
 
   ingress {
     from_port   = "0"
@@ -91,7 +106,7 @@ output "internet_gateway" {
   value = resource.aws_internet_gateway.gateway
 }
 output "route_table" {
-  value = resource.aws_route_table.route_table
+  value = resource.aws_route_table.rt
 }
 output "security_group" {
   value = resource.aws_security_group.allow_traffic

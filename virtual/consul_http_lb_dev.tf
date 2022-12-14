@@ -51,6 +51,28 @@ resource "volterra_http_loadbalancer" "consul_dev" {
     advertise_where {
       port = 8500
       site {
+        ip = "10.10.10.10"
+        network = "SITE_NETWORK_INSIDE"
+        site {
+          name      = "marcel-zg01"
+          namespace = "system"
+        }
+      }
+    }
+    advertise_where {
+      port = 8500
+      site {
+        ip = "10.10.10.10"
+        network = "SITE_NETWORK_OUTSIDE"
+        site {
+          name      = "marcel-colo"
+          namespace = "system"
+        }
+      }
+    }
+    advertise_where {
+      port = 8500
+      site {
         network = "SITE_NETWORK_INSIDE"
         site {
           name      = "marcel-zg01"

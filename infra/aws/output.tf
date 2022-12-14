@@ -4,3 +4,9 @@ output "aws_vpc" {
 output "aws_subnet" {
   value = aws_subnet.subnet
 }
+output "aws_route_table" {
+  value = aws_route_table.rt
+}
+output "aws_route_table_association" {
+  value = aws_route_table_association.rta
+}

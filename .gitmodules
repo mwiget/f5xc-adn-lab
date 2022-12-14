@@ -1,3 +1,6 @@
 [submodule "virtual/modules"]
 	path = virtual/modules
 	url = https://github.com/cklewar/f5-xc-modules.git
+[submodule "sites/modules"]
+	path = sites/modules
+	url = https://github.com/cklewar/f5-xc-modules.git

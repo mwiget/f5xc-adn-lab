@@ -1,8 +1,8 @@
-output "aws_east" {
-  value = module.aws_east
+output "aws_us_east_2" {
+  value = module.aws_us_east_2
 }
-output "aws_west" {
-  value = module.aws_west
+output "aws_us_west_2" {
+  value = module.aws_us_west_2
 }
 output "aks" {
   value = module.aks

@@ -1,0 +1,11 @@
+{
+  "subnets": [
+    {
+      "subnet_name": "mwadn-aws-east-a",
+      "subnet_id": "subnet-087330f7bcc0202d1",
+      "vpc_id": "vpc-06deac29e33209ffd",
+      "availability_zone": "us-east-2a",
+      "security_group_id": "sg-05a40e40a168b2307"
+    }
+  ]
+}

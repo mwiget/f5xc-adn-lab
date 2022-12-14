@@ -1,0 +1,46 @@
+{
+  "subnets": [
+    {
+      "subnet_name": "mwadn-aws-east-a",
+      "subnet_id": "subnet-087330f7bcc0202d1",
+      "vpc_id": "vpc-06deac29e33209ffd",
+      "availability_zone": "us-east-2a",
+      "security_group_id": "sg-05a40e40a168b2307"
+    },
+    {
+      "subnet_name": "mwadn-aws-east-b",
+      "subnet_id": "subnet-089889970a004a7ee",
+      "vpc_id": "vpc-06deac29e33209ffd",
+      "availability_zone": "us-east-2b",
+      "security_group_id": "sg-05a40e40a168b2307"
+    },
+    {
+      "subnet_name": "mwadn-aws-east-c",
+      "subnet_id": "subnet-075349ae98843c5bb",
+      "vpc_id": "vpc-06deac29e33209ffd",
+      "availability_zone": "us-east-2c",
+      "security_group_id": "sg-05a40e40a168b2307"
+    },
+    {
+      "subnet_name": "mwadn-aws-west-a",
+      "subnet_id": "subnet-0ccc917d68ffc4535",
+      "vpc_id": "vpc-013f6eea52d3fe6c9",
+      "availability_zone": "us-west-2a",
+      "security_group_id": "sg-02644894a049204ad"
+    },
+    {
+      "subnet_name": "mwadn-aws-west-b",
+      "subnet_id": "subnet-0e137022fad98a502",
+      "vpc_id": "vpc-013f6eea52d3fe6c9",
+      "availability_zone": "us-west-2b",
+      "security_group_id": "sg-02644894a049204ad"
+    },
+    {
+      "subnet_name": "mwadn-aws-west-c",
+      "subnet_id": "subnet-04f71d229298ef2de",
+      "vpc_id": "vpc-013f6eea52d3fe6c9",
+      "availability_zone": "us-west-2c",
+      "security_group_id": "sg-02644894a049204ad"
+    }
+  ]
+}

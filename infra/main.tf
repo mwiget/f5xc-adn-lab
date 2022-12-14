@@ -1,4 +1,4 @@
-module "aws_east" {
+module "aws_us_east_2" {
   count           = 1
   source          = "./aws"
   vpc_name        = format("%s-aws-east", var.project_prefix)
@@ -16,7 +16,7 @@ module "aws_east" {
   }
 }
 
-module "aws_west" {
+module "aws_us_west_2" {
   count           = 1
   source          = "./aws"
   vpc_name        = format("%s-aws-west", var.project_prefix)
@@ -35,7 +35,7 @@ module "aws_west" {
 }
 
 module "aks" {
-  count           = 1
+  count           = 0
   source          = "./aks"
   project_prefix  = var.project_prefix
   aks_region      = "westus2"

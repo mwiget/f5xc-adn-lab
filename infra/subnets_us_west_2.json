@@ -1,0 +1,25 @@
+{
+  "subnets": [
+    {
+      "subnet_name": "mwadn-aws-west-a",
+      "subnet_id": "subnet-0c2c314414b9c83b4",
+      "vpc_id": "vpc-07d7ee59f189d883a",
+      "availability_zone": "us-west-2a",
+      "security_group_id": "sg-087c674bf47cdc2ea"
+    },
+    {
+      "subnet_name": "mwadn-aws-west-b",
+      "subnet_id": "subnet-08eb1fd1ce74efe71",
+      "vpc_id": "vpc-07d7ee59f189d883a",
+      "availability_zone": "us-west-2b",
+      "security_group_id": "sg-087c674bf47cdc2ea"
+    },
+    {
+      "subnet_name": "mwadn-aws-west-c",
+      "subnet_id": "subnet-0178447b204cda402",
+      "vpc_id": "vpc-07d7ee59f189d883a",
+      "availability_zone": "us-west-2c",
+      "security_group_id": "sg-087c674bf47cdc2ea"
+    }
+  ]
+}
