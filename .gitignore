@@ -9,3 +9,4 @@ az-login.sh
 kubeconfig*.yaml
 ves*.yaml
 error.txt
+infra/subnets_*.json
