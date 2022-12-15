@@ -1,0 +1,21 @@
+{
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": {
+        "creationTimestamp": "2022-12-15T11:13:26Z",
+        "deletionTimestamp": "2022-12-15T13:51:51Z",
+        "labels": {
+            "kubernetes.io/metadata.name": "mwadn"
+        },
+        "name": "mwadn",
+        "resourceVersion": "65807775",
+        "selfLink": "/api/v1/namespaces/mwadn",
+        "uid": "6f9c69f4-68a9-4280-8872-be2223eef30a"
+    },
+    "spec": {
+        "finalizers": [ ]
+    },
+    "status": {
+        "phase": "Terminating"
+    }
+}

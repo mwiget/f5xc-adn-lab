@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consul
+  annotations:
+    ves.io/virtual-sites: "shared/marcel-colo"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consul
+  template:
+    metadata:
+      labels:
+        app: consul
+    spec:
+      containers:
+      - image: consul
+        imagePullPolicy: IfNotPresent
+        name: consul
+        env:
+        - name: CONSUL_BIND_INTERFACE
+          value: eth0
+        - name: CONSUL_LOCAL_CONFIG
+          value: '{"datacenter": "mwadn-prod"}'
+        ports:
+        - containerPort: 8500
+          protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: consul
+spec:
+  ports:
+    - protocol: TCP
+      port: 8500
+      targetPort: 8500
+  selector:
+    app: consul
+  type: ClusterIP
+  sessionAffinity: None

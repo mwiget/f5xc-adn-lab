@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine
+  template:
+    metadata:
+      labels:
+        app: alpine
+    spec:
+      containers:
+      - image: alpine
+        command: ["sleep", "3600"]
+        imagePullPolicy: IfNotPresent
+        name: alpine
+#        securityContext:
+#          privileged: true
+#          capabilities:
+#            add: ["NET_ADMIN", "SYS_ADMIN"]
+#          runAsUser: 0
+#      hostPID: true
+#      hostIPC: true # Use the host's ipc namespace https://www.man7.org/linux/man-pages/man7/ipc_namespaces.7.html
+#      hostNetwork: true # Use the host's network namespace https://www.man7.org/linux/man-pages/man7/network_namespaces.7.html
