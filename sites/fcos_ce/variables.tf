@@ -28,19 +28,19 @@ variable "owner_tag" {
   default     = "m.wiget@f5.com"
 }
 
-variable "bastion_cidr" {
-  type        = string
-  default     = "0.0.0.0/0"
-}
-
 variable "custom_vip_cidr" {
   type        = string
 }
 variable "security_group_id" {
   type        = string
 }
-variable "site_label" {
+variable "site_label_1" {
   type        = string
+}
+
+variable "site_label_2" {
+  type        = string
+  default     = ""
 }
 
 variable "f5xc_api_url" {       

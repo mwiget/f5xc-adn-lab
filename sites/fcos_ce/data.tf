@@ -3,7 +3,8 @@ data "ct_config" "ce" {
     site_token = var.site_token,
     cluster_name = var.site_name,
     ssh_public_key = var.ssh_public_key,
-    site_label = var.site_label,
+    site_label_1 = var.site_label_1,
+    site_label_2 = var.site_label_2,
     custom_vip_cidr = var.custom_vip_cidr
   })
   strict = true

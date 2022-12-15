@@ -5,5 +5,4 @@ f5xc_api_token    = "<api token>
 
 project_prefix    = "prefix"
 ssh_public_key    = "ssh-..... ......................................................."
-bastion_cidr      = "<bastion IP address>/32"
 

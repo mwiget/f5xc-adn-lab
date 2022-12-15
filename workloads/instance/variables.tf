@@ -25,11 +25,6 @@ variable "owner_tag" {
   default     = "m.wiget@f5.com"
 }
 
-variable "bastion_cidr" {
-  type        = string
-  default     = "0.0.0.0/0"
-}
-
 variable "custom_vip_cidr" {
   type        = string
 }

@@ -17,6 +17,11 @@ provider "aws" {
   alias  = "us-east-2"
 }
 
+provider "aws" {
+  region = "us-west-2"
+  alias  = "us-west-2"
+}
+
 provider "volterra" {
   api_p12_file = var.f5xc_api_p12_file
   api_cert     = var.f5xc_api_p12_file != "" ? "" : var.f5xc_api_cert

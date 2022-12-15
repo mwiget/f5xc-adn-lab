@@ -14,10 +14,6 @@ output "namespace_prod" {
   value = module.namespace_prod
 }
 
-output "site-mesh-group" {
-  value = module.smg
-}
-
 output "site-token" {
   value = resource.volterra_token.token
 }

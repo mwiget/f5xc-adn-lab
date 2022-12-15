@@ -293,7 +293,8 @@ storage:
               # CHANGE ME
               # Longitude: <longitude>
               Labels: 
-                ${site_label}
+                ${site_label_1}
+                ${site_label_2}
               MauriceEndpoint: https://register.staging.volterra.us
               MauricePrivateEndpoint: https://register-tls.staging.volterra.us
               PrivateNIC: eth0

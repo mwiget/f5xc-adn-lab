@@ -43,16 +43,25 @@ module "virtual_site" {
   f5xc_namespace                        = "shared"
   f5xc_virtual_site_name                = format("%s-all", var.project_prefix)
   f5xc_virtual_site_type                = "CUSTOMER_EDGE"
-  f5xc_virtual_site_selector_expression = [ format("%s", var.project_prefix) ]
+  f5xc_virtual_site_selector_expression = [ format("%s-all", var.project_prefix) ]
 }
 
-module "smg" {
-  source                           = "./modules/f5xc/site-mesh-group"
-  f5xc_tenant                      = var.f5xc_tenant
-  f5xc_namespace                   = "system"
-  f5xc_virtual_site_name           = module.virtual_site.virtual-site["name"]
-  f5xc_site_mesh_group_name        = format("%s-smg", var.project_prefix)
-  f5xc_site_2_site_connection_type = "full_mesh"
+#module "smg" {
+#  source                           = "./modules/f5xc/site-mesh-group"
+#  f5xc_tenant                      = var.f5xc_tenant
+#  f5xc_virtual_site_name           = module.virtual_site.virtual-site["name"]
+#  f5xc_site_mesh_group_name        = format("%s-smg", var.project_prefix)
+#  f5xc_site_2_site_connection_type = "full_mesh"
+#}
+
+resource "volterra_site_mesh_group" "smg" {
+  name        = format("%s-smg", var.project_prefix)
+  namespace   = "system"
+  type        = "SITE_MESH_GROUP_TYPE_FULL_MESH"
+  virtual_site {
+    name = module.virtual_site.virtual-site["name"]
+    namespace = "shared"
+  }
 }
 
 resource "volterra_token" "token" {
@@ -65,7 +74,7 @@ module "vk8s_dev" {
   f5xc_tenant               = var.f5xc_tenant
   f5xc_api_url              = var.f5xc_api_url
   f5xc_api_token            = var.f5xc_api_token
-  f5xc_vk8s_name            = format("%s-vk8s-dev", var.project_prefix)
+  f5xc_vk8s_name            = format("%s-dev", var.project_prefix)
   f5xc_vk8s_namespace       = module.namespace_dev.namespace["name"]
   f5xc_vsite_refs_namespace = "shared"
   f5xc_virtual_site_refs    = [module.virtual_site_dev.virtual-site["name"]]
@@ -76,7 +85,7 @@ module "vk8s_pre" {
   f5xc_tenant               = var.f5xc_tenant
   f5xc_api_url              = var.f5xc_api_url
   f5xc_api_token            = var.f5xc_api_token
-  f5xc_vk8s_name            = format("%s-vk8s-pre", var.project_prefix)
+  f5xc_vk8s_name            = format("%s-pre", var.project_prefix)
   f5xc_vk8s_namespace       = module.namespace_pre.namespace["name"]
   f5xc_vsite_refs_namespace = "shared"
   f5xc_virtual_site_refs    = [module.virtual_site_pre.virtual-site["name"]]
@@ -87,7 +96,7 @@ module "vk8s_prod" {
   f5xc_tenant               = var.f5xc_tenant
   f5xc_api_url              = var.f5xc_api_url
   f5xc_api_token            = var.f5xc_api_token
-  f5xc_vk8s_name            = format("%s-vk8s-prod", var.project_prefix)
+  f5xc_vk8s_name            = format("%s-prod", var.project_prefix)
   f5xc_namespace            = module.namespace_prod.namespace["name"]
   f5xc_vk8s_namespace       = module.namespace_prod.namespace["name"]
   f5xc_vsite_refs_namespace = "shared"

@@ -56,8 +56,3 @@ variable "f5xc_tenant" {
   default = ""
 }
 
-variable "bastion_cidr" {
-  type = string
-  default = "0.0.0.0/0"
-}
-
