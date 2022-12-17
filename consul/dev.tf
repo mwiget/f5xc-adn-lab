@@ -177,6 +177,32 @@ resource "volterra_http_loadbalancer" "consul_dev" {
   depends_on = [ volterra_origin_pool.consul_dev ]
 }
 
+resource "volterra_discovery" "consul_dev" {
+  name      = "mwadm-dev"
+  namespace = "system"
+  no_cluster_id = true
+  discovery_consul {
+    access_info {
+      connection_info {
+        api_server = "http://consul-dev.mwlabs.net:8500"
+      }
+
+    }
+    publish_info {
+      disable = true
+    }
+  }
+  where {
+    virtual_site {
+      network_type = "SITE_NETWORK_OUTSIDE"
+      ref {
+        name = "mwadn-dev"
+        namespace = "shared"
+      }
+    }
+  }
+}
+
 output "http_loadbalancer" {
   value = resource.volterra_http_loadbalancer.consul_dev
 }

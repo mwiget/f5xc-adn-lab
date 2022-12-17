@@ -177,6 +177,32 @@ resource "volterra_http_loadbalancer" "consul_pre" {
   depends_on = [ volterra_origin_pool.consul_pre ]
 }
 
+resource "volterra_discovery" "consul_pre" {
+  name      = "mwadm-pre"
+  namespace = "system"
+  no_cluster_id = true
+  discovery_consul {
+    access_info {
+      connection_info {
+        api_server = "http://consul-pre.mwlabs.net:8500"
+      }
+
+    }
+    publish_info {
+      disable = true
+    }
+  }
+  where {
+    virtual_site {
+      network_type = "SITE_NETWORK_OUTSIDE"
+      ref {
+        name = "mwadn-pre"
+        namespace = "shared"
+      }
+    }
+  }
+}
+
 output "http_loadbalancer_pre" {
   value = resource.volterra_http_loadbalancer.consul_pre
 }

@@ -1,6 +1,5 @@
 module "ce-us-east-2" {
   source            = "./ver_ce"
-  #source            = "./fcos_ce"
   for_each          = {for subnet in local.subnets_us_east_2.subnets:  subnet.subnet_name => subnet}
   aws_region        = "us-east-2"
   availability_zone = each.value.availability_zone

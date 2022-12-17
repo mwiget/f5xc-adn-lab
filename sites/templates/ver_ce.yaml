@@ -12,6 +12,7 @@ write_files:
       Token: ${site_token}
       PrivateNIC:
       Labels:
+        ves.io/fleet: ${cluster_name}
         ${site_label_1}
         ${site_label_2}
         ${site_label_3}
