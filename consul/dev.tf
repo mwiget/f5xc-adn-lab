@@ -159,6 +159,17 @@ resource "volterra_http_loadbalancer" "consul_dev" {
         }
       }
     }
+    advertise_where {
+      port = 8500
+      site {
+        ip = "10.10.10.10"
+        network = "SITE_NETWORK_OUTSIDE"
+        site {
+          name      = "mwadn-eu-west-1-a"
+          namespace = "system"
+        }
+      }
+    }
   }
 
   default_route_pools {
