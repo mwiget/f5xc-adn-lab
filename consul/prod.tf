@@ -42,7 +42,7 @@ resource "volterra_http_loadbalancer" "consul_prod" {
   name                            = "consul-prod"
   namespace                       = format("%s-prod", var.project_prefix)
   no_challenge                    = true
-  domains                         = [ "consul-prod.mwlabs.net", "consul.dev" ]
+  domains                         = [ "consul-prod.mwlabs.net", "consul.prod" ]
 
   disable_rate_limit              = true
   service_policies_from_namespace = true
