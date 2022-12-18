@@ -41,6 +41,16 @@ resource "volterra_origin_pool" "workload_dev" {
       outside_network = true
     }
   }
+  advanced_options {
+    disable_outlier_detection = false
+    outlier_detection {
+      base_ejection_time = 10000
+      consecutive_5xx = 2
+      consecutive_gateway_failure = 2
+      interval = 5000
+      max_ejection_percent = 100
+    } 
+  } 
 
   healthcheck {
     name = volterra_healthcheck.workload_hc_dev.name
