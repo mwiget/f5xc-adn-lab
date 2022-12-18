@@ -7,3 +7,6 @@ output "ce-us-west-2" {
 output "ce-eu-north-1" {
   value = module.ce-eu-north-1
 }
+output "ce-eu-west-1" {
+  value = module.ce-eu-west-1
+}

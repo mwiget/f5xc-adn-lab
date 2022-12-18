@@ -52,6 +52,22 @@ module "aws_eu_north_1" {
   }
 }
 
+module "aws_eu_west_1" {
+  count           = 1
+  source          = "./aws"
+  vpc_name        = format("%s-eu-west-1", var.project_prefix)
+  project_prefix  = var.project_prefix
+  vpc_cidr        = "172.16.20.0/22"
+  aws_region      = "eu-west-1"
+  owner_tag       = var.owner_tag
+  vpc_subnets     = [
+    { availability_zone = "a", cidr_block = "172.16.20.0/24" }
+  ]
+  providers       = {
+    aws           = aws.eu-west-1
+  }
+}
+
 module "aks" {
   count           = 0
   source          = "./aks"

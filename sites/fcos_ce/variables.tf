@@ -43,6 +43,16 @@ variable "site_label_2" {
   default     = ""
 }
 
+variable "site_label_3" {
+  type        = string
+  default     = ""
+}
+
+variable "site_label_4" {
+  type        = string
+  default     = ""
+}
+
 variable "f5xc_api_url" {       
   type = string
 }

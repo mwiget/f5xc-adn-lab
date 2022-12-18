@@ -10,6 +10,10 @@ provider "aws" {
   region = "eu-north-1"
   alias  = "eu-north-1"
 }
+provider "aws" {
+  region = "eu-west-1"
+  alias  = "eu-west-1"
+}
 provider "azurerm" {
   features {}
   alias  = "azurerm"

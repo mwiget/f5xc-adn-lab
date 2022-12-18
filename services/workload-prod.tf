@@ -1,6 +1,6 @@
-resource "volterra_healthcheck" "workload_hc_dev" {
+resource "volterra_healthcheck" "workload_hc_prod" {
   name      = format("%s-workload-hc", var.project_prefix)
-  namespace = format("%s-dev", var.project_prefix)
+  namespace = format("%s-prod", var.project_prefix)
 
   http_health_check {
     use_origin_server_name = true
@@ -12,9 +12,9 @@ resource "volterra_healthcheck" "workload_hc_dev" {
   unhealthy_threshold = 2
 }
 
-resource "volterra_origin_pool" "workload_dev" {
-  name                   = "workload-dev"
-  namespace              = format("%s-dev", var.project_prefix)
+resource "volterra_origin_pool" "workload_prod" {
+  name                   = "workload-prod"
+  namespace              = format("%s-prod", var.project_prefix)
   endpoint_selection     = "DISTRIBUTED"
   loadbalancer_algorithm = "LB_OVERRIDE"
   port                   = 8080
@@ -22,19 +22,19 @@ resource "volterra_origin_pool" "workload_dev" {
 
   origin_servers {
     #    k8s_service {
-    #  service_name = "workload-dev"
+    #  service_name = "workload-prod"
     #  site_locator {
     #    virtual_site {
     #      namespace = "shared"
-    #      name      = "mwadn-dev"
+    #      name      = "mwadn-prod"
     #    }
     #  }
     #}
     consul_service {
-      service_name = "workload-dev"
+      service_name = "workload-prod"
       site_locator {
         virtual_site {
-          name      = "mwadn-dev"
+          name      = "mwadn-prod"
           namespace = "shared"
         }
       }
@@ -53,15 +53,15 @@ resource "volterra_origin_pool" "workload_dev" {
   } 
 
   healthcheck {
-    name = volterra_healthcheck.workload_hc_dev.name
+    name = volterra_healthcheck.workload_hc_prod.name
   }
 }
 
-resource "volterra_http_loadbalancer" "workload_dev" {
-  name                            = "workload-dev"
-  namespace                       = format("%s-dev", var.project_prefix)
+resource "volterra_http_loadbalancer" "workload_prod" {
+  name                            = "workload-prod"
+  namespace                       = format("%s-prod", var.project_prefix)
   no_challenge                    = true
-  domains                         = [ "workload-dev.mwadn-dev" ]
+  domains                         = [ "workload-prod.mwadn-prod" ]
 
   disable_rate_limit              = true
   service_policies_from_namespace = true
@@ -182,7 +182,7 @@ resource "volterra_http_loadbalancer" "workload_dev" {
 
   default_route_pools {
     pool {
-      name = volterra_origin_pool.workload_dev.name
+      name = volterra_origin_pool.workload_prod.name
     }
     weight = 1
     priority = 1
@@ -193,16 +193,16 @@ resource "volterra_http_loadbalancer" "workload_dev" {
     port = 8080
   }
 
-  depends_on = [ volterra_origin_pool.workload_dev ]
+  depends_on = [ volterra_origin_pool.workload_prod ]
 }
 
-output "http_loadbalancer_dev" {
-  value = resource.volterra_http_loadbalancer.workload_dev
+output "http_loadbalancer_prod" {
+  value = resource.volterra_http_loadbalancer.workload_prod
 }
-output "origin_pool_dev" {
-  value = resource.volterra_origin_pool.workload_dev
+output "origin_pool_prod" {
+  value = resource.volterra_origin_pool.workload_prod
 }
-output "health_check_dev" {
-  value = resource.volterra_healthcheck.workload_hc_dev
+output "health_check_prod" {
+  value = resource.volterra_healthcheck.workload_hc_prod
 }
 

@@ -5,6 +5,8 @@ data "ct_config" "ce" {
     ssh_public_key = var.ssh_public_key,
     site_label_1 = var.site_label_1,
     site_label_2 = var.site_label_2,
+    site_label_3 = var.site_label_3,
+    site_label_4 = var.site_label_4,
     custom_vip_cidr = var.custom_vip_cidr
   })
   strict = true
