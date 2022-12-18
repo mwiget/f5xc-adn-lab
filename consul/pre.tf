@@ -178,7 +178,7 @@ resource "volterra_http_loadbalancer" "consul_pre" {
 }
 
 resource "volterra_discovery" "consul_pre" {
-  name      = "mwadm-pre"
+  name      = "mwadn-pre"
   namespace = "system"
   no_cluster_id = true
   discovery_consul {

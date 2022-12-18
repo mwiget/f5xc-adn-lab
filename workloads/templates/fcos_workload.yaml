@@ -42,7 +42,7 @@ storage:
       inline: |
         #!/bin/bash
         while true; do
-          myip=i$(hostname -I | cut -d' ' -f1)
+          myip=$(hostname -I | cut -d' ' -f1)
           cat > /tmp/payload.json <<EOF
           {
             "Node": "${cluster_name}",
