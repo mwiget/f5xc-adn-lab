@@ -44,3 +44,12 @@ resource "volterra_registration_approval" "ce" {
   retry = 25
   wait_time = 30
 }
+
+resource "volterra_site_state" "decommission_when_delete" {
+  name       = var.site_name
+  when       = "delete"
+  state      = "DECOMMISSIONING"
+  wait_time  = 60
+  retry      = 5
+  depends_on = [volterra_registration_approval.ce]
+} 
