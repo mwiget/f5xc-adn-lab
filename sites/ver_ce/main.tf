@@ -1,6 +1,7 @@
 resource "aws_instance" "ce" {
   ami                         = var.ver_image[var.aws_region]
   instance_type               = var.instance_type
+  iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
   user_data                   = templatefile("./templates/ver_ce.yaml", {
     site_token = var.site_token,
     cluster_name = var.site_name,
